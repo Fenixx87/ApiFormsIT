@@ -32,12 +32,17 @@ namespace WinFormArchivo
             this.btnDescargarArchivo = new System.Windows.Forms.Button();
             this.txtNombreArchivo = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnSelect = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnEnviar = new System.Windows.Forms.Button();
+            this.txtRuta = new System.Windows.Forms.TextBox();
+            this.lblRuta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDescargarArchivo
             // 
-            this.btnDescargarArchivo.Location = new System.Drawing.Point(248, 143);
-            this.btnDescargarArchivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnDescargarArchivo.Location = new System.Drawing.Point(139, 212);
+            this.btnDescargarArchivo.Margin = new System.Windows.Forms.Padding(4);
             this.btnDescargarArchivo.Name = "btnDescargarArchivo";
             this.btnDescargarArchivo.Size = new System.Drawing.Size(120, 49);
             this.btnDescargarArchivo.TabIndex = 0;
@@ -48,7 +53,7 @@ namespace WinFormArchivo
             // txtNombreArchivo
             // 
             this.txtNombreArchivo.Location = new System.Drawing.Point(277, 68);
-            this.txtNombreArchivo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNombreArchivo.Margin = new System.Windows.Forms.Padding(4);
             this.txtNombreArchivo.Name = "txtNombreArchivo";
             this.txtNombreArchivo.Size = new System.Drawing.Size(261, 22);
             this.txtNombreArchivo.TabIndex = 1;
@@ -56,25 +61,71 @@ namespace WinFormArchivo
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(100, 76);
+            this.label1.Location = new System.Drawing.Point(119, 71);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(140, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Nombre de archivo : ";
             // 
+            // btnSelect
+            // 
+            this.btnSelect.Location = new System.Drawing.Point(544, 97);
+            this.btnSelect.Name = "btnSelect";
+            this.btnSelect.Size = new System.Drawing.Size(38, 23);
+            this.btnSelect.TabIndex = 3;
+            this.btnSelect.Text = "...";
+            this.btnSelect.UseVisualStyleBackColor = true;
+            this.btnSelect.Click += new System.EventHandler(this.btnSelect_Click);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
+            // 
+            // btnEnviar
+            // 
+            this.btnEnviar.Location = new System.Drawing.Point(307, 212);
+            this.btnEnviar.Name = "btnEnviar";
+            this.btnEnviar.Size = new System.Drawing.Size(112, 49);
+            this.btnEnviar.TabIndex = 4;
+            this.btnEnviar.Text = "Enviar";
+            this.btnEnviar.UseVisualStyleBackColor = true;
+            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
+            // 
+            // txtRuta
+            // 
+            this.txtRuta.Location = new System.Drawing.Point(277, 98);
+            this.txtRuta.Name = "txtRuta";
+            this.txtRuta.Size = new System.Drawing.Size(261, 22);
+            this.txtRuta.TabIndex = 5;
+            // 
+            // lblRuta
+            // 
+            this.lblRuta.AutoSize = true;
+            this.lblRuta.Location = new System.Drawing.Point(119, 101);
+            this.lblRuta.Name = "lblRuta";
+            this.lblRuta.Size = new System.Drawing.Size(92, 17);
+            this.lblRuta.TabIndex = 6;
+            this.lblRuta.Text = "Ruta archivo:";
+            // 
             // FrmArchivo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(645, 444);
+            this.Controls.Add(this.lblRuta);
+            this.Controls.Add(this.txtRuta);
+            this.Controls.Add(this.btnEnviar);
+            this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombreArchivo);
             this.Controls.Add(this.btnDescargarArchivo);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FrmArchivo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Consumiendo web api de archivos";
+            this.Load += new System.EventHandler(this.FrmArchivo_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -85,6 +136,11 @@ namespace WinFormArchivo
         private System.Windows.Forms.Button btnDescargarArchivo;
         private System.Windows.Forms.TextBox txtNombreArchivo;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnSelect;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Button btnEnviar;
+        private System.Windows.Forms.TextBox txtRuta;
+        private System.Windows.Forms.Label lblRuta;
     }
 }
 

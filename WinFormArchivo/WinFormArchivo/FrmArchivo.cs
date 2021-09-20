@@ -9,6 +9,8 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net;
+using System.Net.Mail;
 
 namespace WinFormArchivo
 {
@@ -37,7 +39,7 @@ namespace WinFormArchivo
                             if (respuestaConsulta.IsSuccessStatusCode)
                             {
                                 byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
-                                string nombreCompletoArchivo = @"C:\Users\rober\source\repos\WinFormArchivo\WinFormArchivo\pruebadocs\" + nombreArchivo;
+                                string nombreCompletoArchivo = @"C:\Users\rober\source\repos\ApiForms\WinFormArchivo\WinFormArchivo\pruebadocs\" + nombreArchivo;
                                 File.WriteAllBytes(nombreCompletoArchivo, arrContenido);
                                 tipoRespuesta = 1;
                                 mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
@@ -65,6 +67,37 @@ namespace WinFormArchivo
             else
                 iconoMensaje = MessageBoxIcon.Error;
             MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);
+        }
+
+        private void FrmArchivo_Load(object sender, EventArgs e)
+        {
+
+        }
+        
+        private void btnSelect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.openFileDialog1.ShowDialog();
+                if (this.openFileDialog1.FileName.Equals("") == false)
+                {
+                    txtRuta.Text = this.openFileDialog1.FileName;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al cargar la ruta del archivo: " + ex.ToString());
+            }
+        }
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void btnEnviar_Click(object sender, EventArgs e)
+        {
+             
         }
     }
 }

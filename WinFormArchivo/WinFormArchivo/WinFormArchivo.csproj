@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="attachment.cs" />
     <Compile Include="FrmArchivo.cs">
       <SubType>Form</SubType>
     </Compile>
