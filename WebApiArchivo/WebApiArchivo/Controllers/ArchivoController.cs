@@ -15,7 +15,7 @@ namespace WebApiArchivo.Controllers
         {
             HttpResponseMessage resultado = null;
             string directorioDescarga = ConfigurationManager.AppSettings["DirectorioDescarga"];
-
+            //string directorioDescarga = nombreArchivo;
             int tipoRespuesta = 2;
             string mensajeRespuesta = "";
             byte[] arrContenido = null;
@@ -38,7 +38,7 @@ namespace WebApiArchivo.Controllers
                         mensajeRespuesta = "No existe el archivo " + nombreArchivo;
                 }
                 else
-                    mensajeRespuesta = "No existe el directorio de descarga \"DirectorioDescarga\"";
+                    mensajeRespuesta = "No existe el directorio de descarga" + directorioDescarga;
             }
             catch (Exception ex)
             {
@@ -56,7 +56,6 @@ namespace WebApiArchivo.Controllers
                     resultado = new HttpResponseMessage(HttpStatusCode.InternalServerError);
                 resultado.Content = new StringContent(mensajeRespuesta);
             }
-
             return resultado;
         }
     }

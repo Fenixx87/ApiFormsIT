@@ -39,7 +39,7 @@ namespace WinFormArchivo
                             if (respuestaConsulta.IsSuccessStatusCode)
                             {
                                 byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
-                                string nombreCompletoArchivo = @"C:\Users\rober\source\repos\ApiForms\WinFormArchivo\WinFormArchivo\pruebadocs\" + nombreArchivo;
+                                string nombreCompletoArchivo = @"C:" + nombreArchivo + "1";
                                 File.WriteAllBytes(nombreCompletoArchivo, arrContenido);
                                 tipoRespuesta = 1;
                                 mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
@@ -56,7 +56,7 @@ namespace WinFormArchivo
                     tipoRespuesta = 3;
                     mensajeRespuesta = ex.Message;
                 }
-                
+
             }
 
             MessageBoxIcon iconoMensaje;
@@ -82,6 +82,9 @@ namespace WinFormArchivo
                 if (this.openFileDialog1.FileName.Equals("") == false)
                 {
                     txtRuta.Text = this.openFileDialog1.FileName;
+                    string name = txtRuta.Text;
+                    string nameRec = name.Substring(2);
+                    txtNombreArchivo.Text = nameRec;
                 }
             }
             catch (Exception ex)
@@ -95,9 +98,9 @@ namespace WinFormArchivo
 
         }
 
-        private void btnEnviar_Click(object sender, EventArgs e)
+        private void txtNombreArchivo_TextChanged(object sender, EventArgs e)
         {
-             
+
         }
     }
 }

@@ -34,17 +34,16 @@ namespace WinFormArchivo
             this.label1 = new System.Windows.Forms.Label();
             this.btnSelect = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.btnEnviar = new System.Windows.Forms.Button();
             this.txtRuta = new System.Windows.Forms.TextBox();
             this.lblRuta = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnDescargarArchivo
             // 
-            this.btnDescargarArchivo.Location = new System.Drawing.Point(139, 212);
+            this.btnDescargarArchivo.Location = new System.Drawing.Point(216, 206);
             this.btnDescargarArchivo.Margin = new System.Windows.Forms.Padding(4);
             this.btnDescargarArchivo.Name = "btnDescargarArchivo";
-            this.btnDescargarArchivo.Size = new System.Drawing.Size(120, 49);
+            this.btnDescargarArchivo.Size = new System.Drawing.Size(220, 49);
             this.btnDescargarArchivo.TabIndex = 0;
             this.btnDescargarArchivo.Text = "Descargar archivo";
             this.btnDescargarArchivo.UseVisualStyleBackColor = true;
@@ -57,6 +56,7 @@ namespace WinFormArchivo
             this.txtNombreArchivo.Name = "txtNombreArchivo";
             this.txtNombreArchivo.Size = new System.Drawing.Size(261, 22);
             this.txtNombreArchivo.TabIndex = 1;
+            this.txtNombreArchivo.TextChanged += new System.EventHandler(this.txtNombreArchivo_TextChanged);
             // 
             // label1
             // 
@@ -70,9 +70,9 @@ namespace WinFormArchivo
             // 
             // btnSelect
             // 
-            this.btnSelect.Location = new System.Drawing.Point(544, 97);
+            this.btnSelect.Location = new System.Drawing.Point(544, 98);
             this.btnSelect.Name = "btnSelect";
-            this.btnSelect.Size = new System.Drawing.Size(38, 23);
+            this.btnSelect.Size = new System.Drawing.Size(38, 22);
             this.btnSelect.TabIndex = 3;
             this.btnSelect.Text = "...";
             this.btnSelect.UseVisualStyleBackColor = true;
@@ -82,16 +82,6 @@ namespace WinFormArchivo
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
-            // 
-            // btnEnviar
-            // 
-            this.btnEnviar.Location = new System.Drawing.Point(307, 212);
-            this.btnEnviar.Name = "btnEnviar";
-            this.btnEnviar.Size = new System.Drawing.Size(112, 49);
-            this.btnEnviar.TabIndex = 4;
-            this.btnEnviar.Text = "Enviar";
-            this.btnEnviar.UseVisualStyleBackColor = true;
-            this.btnEnviar.Click += new System.EventHandler(this.btnEnviar_Click);
             // 
             // txtRuta
             // 
@@ -116,7 +106,6 @@ namespace WinFormArchivo
             this.ClientSize = new System.Drawing.Size(645, 444);
             this.Controls.Add(this.lblRuta);
             this.Controls.Add(this.txtRuta);
-            this.Controls.Add(this.btnEnviar);
             this.Controls.Add(this.btnSelect);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombreArchivo);
@@ -138,7 +127,6 @@ namespace WinFormArchivo
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSelect;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
-        private System.Windows.Forms.Button btnEnviar;
         private System.Windows.Forms.TextBox txtRuta;
         private System.Windows.Forms.Label lblRuta;
     }
