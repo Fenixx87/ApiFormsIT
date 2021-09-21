@@ -14,31 +14,32 @@ namespace WebApiArchivo.Controllers
         public HttpResponseMessage Get(string nombreArchivo)
         {
             HttpResponseMessage resultado = null;
-            string directorioDescarga = ConfigurationManager.AppSettings["DirectorioDescarga"];
-            //string directorioDescarga = nombreArchivo;
+            //string directorioDescarga = ConfigurationManager.AppSettings["DirectorioDescarga"];
+            //string directorioDescarga = "@" + "\"" + nombreArchivo + "\"";
             int tipoRespuesta = 2;
             string mensajeRespuesta = "";
             byte[] arrContenido = null;
             try
             {
-                if (Directory.Exists(directorioDescarga))
-                {
-                    string nombreCompletoArchivo = Path.Combine(directorioDescarga, nombreArchivo);
-                    if (File.Exists(nombreCompletoArchivo))
-                    {
-                        long tamanioArchivo = new FileInfo(nombreCompletoArchivo).Length;
+                //if (Directory.Exists(nombreArchivo))
+                //{
+                    string directorioDescarga = "@" + "\"" + nombreArchivo + "\"";
+                    string nombreCompletoArchivo = /*Path.Combine*/(directorioDescarga/*, nombreArchivo*/);
+                    //if (File.Exists(nombreCompletoArchivo))
+                    //{
+                        long tamanioArchivo = new FileInfo(nombreArchivo).Length;
                         arrContenido = new byte[tamanioArchivo];
-                        using (FileStream fs = new FileStream(nombreCompletoArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
+                        using (FileStream fs = new FileStream(nombreArchivo, FileMode.Open, FileAccess.Read, FileShare.Read))
                         {
                             fs.Read(arrContenido, 0, arrContenido.Length);
                             tipoRespuesta = 1;
                         }
-                    }
-                    else
-                        mensajeRespuesta = "No existe el archivo " + nombreArchivo;
-                }
-                else
-                    mensajeRespuesta = "No existe el directorio de descarga" + directorioDescarga;
+                    //}
+                    //else
+                       //mensajeRespuesta = "No existe el archivo " + nombreArchivo;
+                //}
+                //else
+                    //mensajeRespuesta = "No existe el directorio de descarga" + nombreArchivo;
             }
             catch (Exception ex)
             {

@@ -18,6 +18,7 @@ using Spire.Pdf.Annotations.Appearance;
 using Spire.Pdf.Graphics;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Spire.Pdf.Grid;
 
 namespace WinFormArchivo
 {
@@ -46,7 +47,7 @@ namespace WinFormArchivo
                             if (respuestaConsulta.IsSuccessStatusCode)
                             {
                                 byte[] arrContenido = await respuestaConsulta.Content.ReadAsAsync<byte[]>();
-                                string nombreCompletoArchivo = @"C:" + nombreArchivo + "1";
+                                string nombreCompletoArchivo = nombreArchivo + 1;
                                 File.WriteAllBytes(nombreCompletoArchivo, arrContenido);
                                 tipoRespuesta = 1;
                                 mensajeRespuesta = "Se descargó correctamente el archivo " + nombreArchivo;
@@ -84,9 +85,7 @@ namespace WinFormArchivo
                 if (this.openFileDialog1.FileName.Equals("") == false)
                 {
                     txtRuta.Text = this.openFileDialog1.FileName;
-                    string name = txtRuta.Text;
-                    string nameRec = name.Substring(2);
-                    txtNombreArchivo.Text = nameRec;
+                    txtNombreArchivo.Text = this.openFileDialog1.FileName;
                 }
             }
             catch (Exception ex)
@@ -125,7 +124,6 @@ namespace WinFormArchivo
                 pdfContentByte.AddImage(image);
                 stamper.Close();
             }
-            
         }
     }
 }
