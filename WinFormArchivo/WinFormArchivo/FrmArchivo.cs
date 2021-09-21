@@ -11,6 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Mail;
+using WinFormArchivo;
+using Spire.Pdf;
+using Spire.Pdf.Annotations;
+using Spire.Pdf.Annotations.Appearance;
+using Spire.Pdf.Graphics;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace WinFormArchivo
 {
@@ -68,11 +75,6 @@ namespace WinFormArchivo
                 iconoMensaje = MessageBoxIcon.Error;
             MessageBox.Show(mensajeRespuesta, "Descarga de archivos", MessageBoxButtons.OK, iconoMensaje);
         }
-
-        private void FrmArchivo_Load(object sender, EventArgs e)
-        {
-
-        }
         
         private void btnSelect_Click(object sender, EventArgs e)
         {
@@ -93,14 +95,37 @@ namespace WinFormArchivo
             }
         }
 
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        private void btnShow_Click(object sender, EventArgs e)
         {
-
+            pdfReader pdf = new pdfReader();
+            pdf.axAcroPDF1.src = txtRuta.Text;
+            pdf.Show();
         }
 
-        private void txtNombreArchivo_TextChanged(object sender, EventArgs e)
+        private void btnImg_Click(object sender, EventArgs e)
         {
+            openFileDialog2.ShowDialog();
+            pcbFirma.ImageLocation = openFileDialog2.FileName;
+        }
 
+        private void btnGuardar_Click(object sender, EventArgs e)
+        {
+            saveFileDialog1.ShowDialog();
+            txtGuardar.Text = saveFileDialog1.FileName;
+            using (Stream inputPdfStream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream inputImageStream = new FileStream(openFileDialog2.FileName, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream outputPdfStream = new FileStream(saveFileDialog1.FileName, FileMode.Create, FileAccess.Write, FileShare.None))
+            {
+                var reader = new PdfReader(inputPdfStream);
+                var stamper = new PdfStamper(reader, outputPdfStream);
+                var pdfContentByte = stamper.GetOverContent(1);
+
+                iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(inputImageStream);
+                image.SetAbsolutePosition(100, 100);
+                pdfContentByte.AddImage(image);
+                stamper.Close();
+            }
+            
         }
     }
 }
